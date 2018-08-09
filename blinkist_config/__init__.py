@@ -1,0 +1,1 @@
+name = "blinkist_config"
