@@ -15,8 +15,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/blinkist/blinkist-config-python",
-    packages=setuptools.find_packages('lib'),
-    package_dir={'': 'lib'},
+    packages=setuptools.find_packages('src'),
+    package_dir={'': 'src'},
     install_requires=requirements,
     classifiers=(
         "Programming Language :: Python :: 3",
