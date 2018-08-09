@@ -7,7 +7,7 @@ with open('requirements/prod.txt') as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="blinkist_config",
+    name="blinkistconfig",
     version="0.0.1",
     author="Peter Shoukry",
     author_email="peter@blinkist.com",
@@ -15,7 +15,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/blinkist/blinkist-config-python",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages('lib'),
+    package_dir={'': 'lib'},
     install_requires=requirements,
     classifiers=(
         "Programming Language :: Python :: 3",
