@@ -1,5 +1,7 @@
 # blinkist-config-python
-
+The package simplifies accessing different configuration stores. The current supported stores are:
+- ENV
+- SSM
 
 
 ## Contributing
@@ -10,6 +12,7 @@ To install development requirements
 
 ```bash
 pip install -r requirements/dev.txt
+pip install -e .
 ```
 
 To run tests
