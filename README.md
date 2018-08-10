@@ -18,7 +18,7 @@ pip install -e .
 To run tests
 
 ```bash
-pytest
+pytest --spec
 ```
 
 ## License
