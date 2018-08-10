@@ -1,4 +1,5 @@
 from blinkistconfig import adapters
+from blinkistconfig import errors
 
 class Config:
     """
@@ -20,9 +21,12 @@ class Config:
         fails
         """
         cls._validate_params(*args)
-        from_adapter = cls._adapter()#.get(key, scope=scope)
+        from_adapter = cls._adapter().get(key, scope=scope)
 
-        return key
+        if from_adapter == None:
+            cls._value_missing(key, *args, scope)
+        else:
+            return from_adapter
 
     @staticmethod
     def _has_default(*args):
@@ -44,3 +48,13 @@ class Config:
     def _adapter(cls):
         cls.adapter = getattr(cls, "adapter", adapters.Factory.by(cls.adapter_type))
         return cls.adapter
+
+    @staticmethod
+    def _handle_error(key, scope):
+        raise errors.ValueMissingError(f"key: {key} has no value in {scope}")
+
+    @classmethod
+    def _value_missing(cls, key, *args, scope):
+        if cls._has_default(*args):
+            return cls._default_value(*args)
+        cls._handle_error(key, scope)
