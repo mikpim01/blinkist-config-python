@@ -4,9 +4,7 @@ The package simplifies accessing different configuration stores. The current sup
 - SSM
 
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/blinkist/blinkist-config-python.
+## Development
 
 To install development requirements
 
@@ -20,6 +18,10 @@ To run tests
 ```bash
 pytest --spec
 ```
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/blinkist/blinkist-config-python.
 
 ## License
 
