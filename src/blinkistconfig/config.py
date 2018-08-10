@@ -20,7 +20,7 @@ class Config:
         fails
         """
         cls._validate_params(*args)
-        adapter_value = cls._adapter()
+        from_adapter = cls._adapter()#.get(key, scope=scope)
 
         return key
 
