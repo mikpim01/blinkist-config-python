@@ -5,6 +5,7 @@ class EnvAdapter():
         pass
 
     def get(self, key, scope=None):
+        key = key.replace("/", "_").upper()
         try:
             return os.environ[key]
         except:
