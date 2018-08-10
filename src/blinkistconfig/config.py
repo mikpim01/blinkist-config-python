@@ -24,7 +24,7 @@ class Config:
         from_adapter = cls._adapter().get(key, scope=scope)
 
         if from_adapter == None:
-            cls._value_missing(key, *args, scope)
+            cls._value_missing(key, *args, scope=scope)
         else:
             return from_adapter
 

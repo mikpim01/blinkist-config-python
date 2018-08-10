@@ -2,6 +2,19 @@
 The package simplifies accessing different configuration stores. The current supported stores are:
 - ENV
 - SSM
+## Usge
+```python
+import blinkistconfig.Config
+
+# First setup the Config to use the ENV as config store
+blinkistconfig.Config.env = "production"
+blinkistconfig.Config.adapter_type = "Env"
+
+my_config_value = Config.get("some/folder/config")
+
+# This is being translated to ENV["SOME_FOLDER_CONFIG"]
+
+```
 
 
 ## Development
