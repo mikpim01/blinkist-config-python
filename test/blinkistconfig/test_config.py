@@ -22,6 +22,5 @@ def test_config_get_raises_argument_error_with_more_than_one_default(config_clas
 def test_config_infers_the_adapter_from_adapter_type(config_class, mocker):
     config_class.env = "development"
     config_class.adapter_type = "Env"
-    mocker.patch.dict(os.environ, {"A_KEY": "1"})
-    config_class.get("a/key")
+    assert config_class._adapter().__class__ == blinkistconfig.adapters.EnvAdapter
     assert config_class.adapter.__class__ == blinkistconfig.adapters.EnvAdapter
