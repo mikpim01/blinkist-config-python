@@ -7,8 +7,4 @@ DEFAULT_CLIENT = boto3.client('ssm', region_name=REGION)
 
 class SSMAdapter():
     def get(self, key, scope=None, app_name=None, client=DEFAULT_CLIENT):
-        key = key.replace("/", "_").upper()
-        try:
-            return os.environ[key]
-        except:
-            return None
+        return client.get_parameter(Name=key, WithDecryption=True)
