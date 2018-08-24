@@ -10,7 +10,7 @@ def config_class():
     return blinkistconfig.Config
 
 def test_config_allows_setting_the_environment(config_class):
-    assert config_class.env == "", "Default env is not blanky"
+    assert config_class.env == "", "Default env is not blank"
     config_class.env = "development"
     assert config_class.env == "development", "env should default to the environment"
 
@@ -21,6 +21,9 @@ def test_config_get_raises_argument_error_with_more_than_one_default(config_clas
 
 def test_config_infers_the_adapter_from_adapter_type(config_class, mocker):
     config_class.env = "development"
-    config_class.adapter_type = "Env"
-    assert config_class._adapter().__class__ == blinkistconfig.adapters.EnvAdapter
-    assert config_class.adapter.__class__ == blinkistconfig.adapters.EnvAdapter
+    config_class.adapter_type = "ENV"
+    assert config_class._adapter().__class__ == blinkistconfig.adapters.ENVAdapter
+    assert config_class.adapter.__class__ == blinkistconfig.adapters.ENVAdapter
+
+    config_class.adapter_type = "SSM"
+    assert config_class._adapter().__class__ == blinkistconfig.adapters.ENVAdapter

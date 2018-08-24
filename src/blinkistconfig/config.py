@@ -12,6 +12,7 @@ class Config:
     """
     env = ""
     adapter_type = ""
+    app_name = ""
 
     @classmethod
     # The *args is passed that way to handle None default values properly
@@ -21,7 +22,7 @@ class Config:
         fails
         """
         cls._validate_params(*args)
-        from_adapter = cls._adapter().get(key, scope=scope)
+        from_adapter = cls._adapter().get(key, app_name=cls.app_name, scope=scope)
 
         if from_adapter == None:
             cls._value_missing(key, *args, scope=scope)

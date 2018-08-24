@@ -2,3 +2,4 @@ pytest
 setuptools
 pytest-spec
 pytest-mock
+boto3
