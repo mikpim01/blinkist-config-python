@@ -3,12 +3,13 @@ The package simplifies accessing different configuration stores. The current sup
 - ENV
 - SSM
 ## Usge
+### ENV
 ```python
 import blinkistconfig.Config
 
 # First setup the Config to use the ENV as config store
 blinkistconfig.Config.env = "production"
-blinkistconfig.Config.adapter_type = "Env"
+blinkistconfig.Config.adapter_type = "ENV"
 
 my_config_value = Config.get("some/folder/config")
 
@@ -16,6 +17,25 @@ my_config_value = Config.get("some/folder/config")
 
 ```
 
+### SSM
+```python
+import blinkistconfig.Config
+
+# First setup the Config to use the ENV as config store
+blinkistconfig.Config.env = "production"
+blinkistconfig.Config.adapter_type = "SSM"
+
+my_config_value = Config.get("some/folder/config")
+
+# This is will try to get a parameter from SSM at "/application/my_nice_app/some/folder/config"
+
+```
+Using SSM with a folder scope
+```
+my_config_value = Config.get("some/folder/config", scope="global")
+
+# This will replace `my_nice_app` with `global` and try to resolve "/application/global/another/config"
+```
 
 ## Development
 

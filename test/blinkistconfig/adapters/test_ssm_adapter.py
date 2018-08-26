@@ -12,12 +12,12 @@ def ssm_adapter():
 
 def test_ssm_adapter_get_reads_variable_from_app_scope(ssm_client, ssm_adapter, mocker):
     get_param_stub = mocker.patch.object(ssm_client, 'get_parameter')
-    ssm_adapter.get('a_key',app_name="an_app", client=ssm_client)
-    get_param_stub.assert_called_once_with(Name=f"/application/an_app/a_key", WithDecryption=True)
+    ssm_adapter.get('a/key',app_name="an_app", client=ssm_client)
+    get_param_stub.assert_called_once_with(Name=f"/application/an_app/a/key", WithDecryption=True)
 
 def test_ssm_adapter_get_reads_variable_from_scope_if_scope_forced(ssm_client, ssm_adapter, mocker):
     get_param_stub = mocker.patch.object(ssm_client, 'get_parameter')
-    ssm_adapter.get('a_key',app_name="an_app", client=ssm_client, scope='global')
-    get_param_stub.assert_called_once_with(Name=f"/application/global/a_key", WithDecryption=True)
+    ssm_adapter.get('a/key',app_name="an_app", client=ssm_client, scope='global')
+    get_param_stub.assert_called_once_with(Name=f"/application/global/a/key", WithDecryption=True)
 
 
