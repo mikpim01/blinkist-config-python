@@ -33,7 +33,7 @@ my_config_value = Config.get("some/folder/config")
 ```
 Using SSM with a folder scope
 ```
-my_config_value = Config.get("some/folder/config", scope="global")
+my_config_value = Config.get("another/config", scope="global")
 
 # This will replace `my_nice_app` with `global` and try to resolve "/application/global/another/config"
 ```
