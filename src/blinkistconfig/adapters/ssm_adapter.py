@@ -1,7 +1,7 @@
 import os
 import boto3
 
-REGION = os.environ['AWS_DEFAULT_REGION'] if 'AWS_DEFAULT_REGION' in os.environ else 'us-east-1'
+REGION = os.environ.get('AWS_DEFAULT_REGION', 'us-east-1')
 
 DEFAULT_CLIENT = boto3.client('ssm', region_name=REGION)
 
