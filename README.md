@@ -28,7 +28,7 @@ blinkistconfig.Config.app_name = "my_nice_app"
 
 my_config_value = Config.get("some/folder/config")
 
-# This is will try to get a parameter from SSM at "/application/my_nice_app/some/folder/config"
+# This will try to get a parameter from SSM at "/application/my_nice_app/some/folder/config"
 
 ```
 Using SSM with a folder scope
