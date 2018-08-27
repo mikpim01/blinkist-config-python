@@ -1,5 +1,6 @@
-import os
 import boto3
+
+import os
 
 REGION = os.environ.get('AWS_DEFAULT_REGION', 'us-east-1')
 
