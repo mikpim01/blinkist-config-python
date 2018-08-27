@@ -2,7 +2,7 @@
 The package simplifies accessing different configuration stores. The current supported stores are:
 - ENV
 - SSM
-## Usge
+## Usage
 ### ENV
 ```python
 import blinkistconfig.Config
