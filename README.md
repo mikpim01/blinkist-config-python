@@ -1,7 +1,7 @@
 # blinkist-config-python
 The package simplifies accessing different configuration stores. The current supported stores are:
-- ENV
-- SSM
+ENV - read from the application's environment variable
+SSM - read from the AWS SSM Parameter Store
 ## Usage
 ### ENV
 ```python
