@@ -7,7 +7,7 @@ The package simplifies accessing different configuration stores. The current sup
 ```python
 import blinkistconfig.Config
 
-# First setup the Config to use the ENV as config store
+# Setup the Config to use the ENV as config store
 blinkistconfig.Config.env = "production"
 blinkistconfig.Config.adapter_type = "ENV"
 
@@ -21,9 +21,10 @@ my_config_value = Config.get("some/folder/config")
 ```python
 import blinkistconfig.Config
 
-# First setup the Config to use the ENV as config store
+# setup the Config to use the SSM as config store
 blinkistconfig.Config.env = "production"
 blinkistconfig.Config.adapter_type = "SSM"
+blinkistconfig.Config.app_name = "my_nice_app"
 
 my_config_value = Config.get("some/folder/config")
 
