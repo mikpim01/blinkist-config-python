@@ -8,7 +8,7 @@ SSM - read from the AWS SSM Parameter Store
 import blinkistconfig.Config
 
 # Setup the Config to use the ENV as config store
-config = blinkistconfig.Config(env="development", app_name="my_nice_app")
+config = blinkistconfig.Config(env="development", app_name="my_nice_app", adapter_type="ENV")
 
 my_config_value = config.get("some/folder/config")
 
