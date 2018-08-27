@@ -17,6 +17,14 @@ my_config_value = config.get("some/folder/config")
 ```
 
 ### SSM
+For SSM this tool simulates namespace/directory functionality with each application
+having its own. By default requesting a parameter myparam1 within the application
+called my_nice_app will query the SSM parameter store for /application/my_nice_app/myparam1.
+
+This harmonizes nicely with the ability of the SSM param store to do a prefix search.
+The /application/my_nice_app prefix is the default "private" scope.
+
+
 ```python
 import blinkistconfig.Config
 
@@ -28,7 +36,9 @@ my_config_value = config.get("some/folder/config")
 # This will try to get a parameter from SSM at "/application/my_nice_app/some/folder/config"
 
 ```
-Using SSM with a folder scope
+
+It is also possible to also have other scopes, possibly shared between the applications.
+For example
 ```
 my_config_value = config.get("another/config", scope="global")
 
