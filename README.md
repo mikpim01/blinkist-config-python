@@ -8,10 +8,9 @@ SSM - read from the AWS SSM Parameter Store
 import blinkistconfig.Config
 
 # Setup the Config to use the ENV as config store
-blinkistconfig.Config.env = "production"
-blinkistconfig.Config.adapter_type = "ENV"
+config = blinkistconfig.Config(env="development", app_name="my_nice_app")
 
-my_config_value = Config.get("some/folder/config")
+my_config_value = config.get("some/folder/config")
 
 # This is being translated to ENV["SOME_FOLDER_CONFIG"]
 
@@ -22,18 +21,16 @@ my_config_value = Config.get("some/folder/config")
 import blinkistconfig.Config
 
 # setup the Config to use the SSM as config store
-blinkistconfig.Config.env = "production"
-blinkistconfig.Config.adapter_type = "SSM"
-blinkistconfig.Config.app_name = "my_nice_app"
+config = blinkistconfig.Config(env="development", adapter_type="SSM", app_name="my_nice_app")
 
-my_config_value = Config.get("some/folder/config")
+my_config_value = config.get("some/folder/config")
 
 # This will try to get a parameter from SSM at "/application/my_nice_app/some/folder/config"
 
 ```
 Using SSM with a folder scope
 ```
-my_config_value = Config.get("another/config", scope="global")
+my_config_value = config.get("another/config", scope="global")
 
 # This will replace `my_nice_app` with `global` and try to resolve "/application/global/another/config"
 ```
@@ -50,7 +47,7 @@ pip install -e .
 To run tests
 
 ```bash
-pytest --spec
+AWS_DEFAULT_REGION="us-east-1" pytest --spec
 ```
 
 ## Contributing

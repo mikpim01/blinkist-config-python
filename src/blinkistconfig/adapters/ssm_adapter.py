@@ -2,9 +2,7 @@ import boto3
 
 import os
 
-REGION = os.environ.get('AWS_DEFAULT_REGION', 'us-east-1')
-
-DEFAULT_CLIENT = boto3.client('ssm', region_name=REGION)
+DEFAULT_CLIENT = boto3.client('ssm')
 
 class SSMAdapter():
     def get(self, key, scope=None, app_name=None, client=DEFAULT_CLIENT):
