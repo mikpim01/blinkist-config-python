@@ -1,8 +1,6 @@
 import pytest
 import blinkistconfig.adapters
-import mock
 from pytest_mock import mocker
-import os
 
 @pytest.fixture
 def config_class():

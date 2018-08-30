@@ -25,8 +25,8 @@ class Config:
         self._validate_params(*args)
         from_adapter = self._adapter().get(key, scope=scope, app_name=self.app_name)
 
-        if from_adapter == None:
-            self._value_missing(key, *args, scope=scope)
+        if from_adapter is None:
+            return self._value_missing(key, *args, scope=scope)
         else:
             return from_adapter
 
@@ -47,7 +47,7 @@ class Config:
         self.adapter = getattr(self, "adapter", adapters.Factory.by(self.adapter_type))
         return self.adapter
 
-    def _handle_error(key, scope):
+    def _handle_error(self, key, scope):
         raise errors.ValueMissingError(f"key: {key} has no value in {scope}")
 
     def _value_missing(self, key, *args, scope):
