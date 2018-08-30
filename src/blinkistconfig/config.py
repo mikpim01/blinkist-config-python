@@ -7,8 +7,8 @@ class Config:
     with a single method to get a specific key from the store.
 
     ## Example
-        config = Config()
-        config.env = "production"
+        config = Config(env="production", app_name="my_app", adapter="SSM")
+        config.get("a/key")
     """
 
     def __init__(self, env, adapter_type, app_name):
