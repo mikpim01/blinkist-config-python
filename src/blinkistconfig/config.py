@@ -7,54 +7,50 @@ class Config:
     with a single method to get a specific key from the store.
 
     ## Example
-        config = Config()
-        config.env = "production"
+        config = Config(env="production", app_name="my_app", adapter="SSM")
+        config.get("a/key")
     """
-    env = ""
-    adapter_type = ""
 
-    @classmethod
+    def __init__(self, env, adapter_type, app_name):
+        self.app_name = app_name
+        self.env = env
+        self.adapter_type = adapter_type
+
     # The *args is passed that way to handle None default values properly
-    def get(cls, key, *args, scope=None):
+    def get(self, key, *args, scope=None):
         """
         Returns the value of the key from the store or the default value if store
         fails
         """
-        cls._validate_params(*args)
-        from_adapter = cls._adapter().get(key, scope=scope)
+        self._validate_params(*args)
+        from_adapter = self._adapter().get(key, scope=scope, app_name=self.app_name)
 
-        if from_adapter == None:
-            cls._value_missing(key, *args, scope=scope)
+        if from_adapter is None:
+            return self._value_missing(key, *args, scope=scope)
         else:
             return from_adapter
 
-    @staticmethod
-    def _has_default(*args):
+    def _has_default(self, *args):
         return len(args) == 1
 
-    @staticmethod
-    def _default_value(*args):
+    def _default_value(self, *args):
         return args[0]
 
-    @staticmethod
-    def _validate_params(*args):
+    def _validate_params(self, *args):
         args_length = len(args)
         error_message = f"wrong number of arguments"
 
         if args_length not in [0, 1]:
             raise ValueError(error_message)
 
-    @classmethod
-    def _adapter(cls):
-        cls.adapter = getattr(cls, "adapter", adapters.Factory.by(cls.adapter_type))
-        return cls.adapter
+    def _adapter(self):
+        self.adapter = getattr(self, "adapter", adapters.Factory.by(self.adapter_type))
+        return self.adapter
 
-    @staticmethod
-    def _handle_error(key, scope):
+    def _handle_error(self, key, scope):
         raise errors.ValueMissingError(f"key: {key} has no value in {scope}")
 
-    @classmethod
-    def _value_missing(cls, key, *args, scope):
-        if cls._has_default(*args):
-            return cls._default_value(*args)
-        cls._handle_error(key, scope)
+    def _value_missing(self, key, *args, scope):
+        if self._has_default(*args):
+            return self._default_value(*args)
+        self._handle_error(key, scope)
